@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Running Ollama with Old AMD GPUs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.3/dist/locomotive-scroll.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars/css/OverlayScrollbars.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars/js/OverlayScrollbars.min.js"></script>
+    <style>
+        /* Add smooth animations for scroll and hover effects */
+        body {
+            scroll-behavior: smooth;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            OverlayScrollbars(document.querySelectorAll('body'), {});
+            document.querySelectorAll('a[href="#steps"]').forEach(function (element) {
+                element.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector('#steps').scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+        });
+    </script>
+</head>
+
+<body class="bg-gradient-to-br from-purple-500 via-pink-500 to-orange-500 text-white font-sans" data-scroll-container>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center text-center p-5">
+        <div class="fade-in">
+            <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4">
+                Run Ollama with Your <span class="text-yellow-300">Old AMD GPU</span>
+            </h1>
+            <p class="text-lg md:text-2xl font-light max-w-2xl mx-auto">
+                Unlock the power of your GPU and CPU to explore large language models locally with ease.
+            </p>
+            <a href="#steps"
+                class="mt-6 inline-block bg-yellow-300 text-gray-800 font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-yellow-400 transform hover:scale-105 transition-all">
+                Get Started
+            </a>
+        </div>
+    </section>
+
+    <!-- Steps Section -->
+    <section id="steps" class="py-16 bg-white text-gray-900">
+        <div class="container mx-auto px-5">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 fade-in">
+                Step-by-Step Guide
+            </h2>
+
+            <!-- Steps -->
+            <div class="space-y-8">
+                <div class="bg-purple-100 rounded-lg shadow-lg p-6 md:p-8 fade-in">
+                    <h3 class="text-xl font-semibold mb-2 text-purple-600">1. Install Ollama</h3>
+                    <p>Download Ollama for Windows from their <a href="https://ollama.com/" target="_blank"
+                            class="text-purple-500 font-bold hover:underline">official site</a> and install it.</p>
+                </div>
+
+                <div class="bg-pink-100 rounded-lg shadow-lg p-6 md:p-8 fade-in">
+                    <h3 class="text-xl font-semibold mb-2 text-pink-600">2. Download ROCm Libraries</h3>
+                    <p>Visit the <a href="https://github.com/RadeonOpenCompute/ROCm" target="_blank"
+                            class="text-pink-500 font-bold hover:underline">ROCblas GitHub repository</a> and find
+                        libraries for your GPU. For older AMD GPUs, look for the appropriate architecture code. Extract and copy them to
+                        the Ollama ROCm folder.</p>
+                </div>
+
+                <div class="bg-blue-100 rounded-lg shadow-lg p-6 md:p-8 fade-in">
+                    <h3 class="text-xl font-semibold mb-2 text-blue-600">3. Setup ROCm for Ollama</h3>
+                    <p>Follow these steps to ensure compatibility:</p>
+                    <ul class="list-disc list-inside">
+                        <li>Unpack the library version with 7-zip or WinRar.</li>
+                        <li>Copy the ROCm folder from the unpacked library to:</li>
+                    </ul>
+                    <pre class="bg-blue-200 text-sm p-4 rounded-md shadow-inner">
+C:\Users\%username%\AppData\Local\Programs\Ollama\lib\ollama\rocblas\
+                    </pre>
+                </div>
+
+                <div class="bg-orange-100 rounded-lg shadow-lg p-6 md:p-8 fade-in">
+                    <h3 class="text-xl font-semibold mb-2 text-orange-600">4. Set Environment Variables</h3>
+                    <p>If you face errors, set these environment variables:</p>
+                    <pre class="bg-orange-200 text-sm p-4 rounded-md shadow-inner">
+$Env:HCC_AMDGPU_TARGET = "your_gpu_architecture_code"
+$Env:HSA_OVERRIDE_GFX_VERSION = "your_gfx_version"
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Improvement Section -->
+    <section id="improvement" class="py-16 bg-gray-100 text-gray-900">
+        <div class="container mx-auto px-5">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 fade-in">
+                Performance Improvement
+            </h2>
+            <p class="text-center mb-8">Comparison of eval rates on a Ryzen 5 7500F CPU and an AMD RX 5500 XT GPU.</p>
+            <div class="flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-8">
+                <div class="w-full md:w-1/2 flex flex-col items-center justify-center">
+                    <h3 class="text-xl font-semibold mb-2 text-center">Eval Rate on CPU (32 tokens/sec)</h3>
+                    <img src="assets/cpu.png" alt="Eval Rate on CPU" class="rounded-lg shadow-lg">
+                </div>
+                <div class="w-full md:w-1/2 flex flex-col items-center justify-center">
+                    <h3 class="text-xl font-semibold mb-2 text-center">Eval Rate on GPU (96 tokens/sec)</h3>
+                    <img src="assets/gpu.png" alt="Eval Rate on GPU" class="rounded-lg shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 bg-gray-900 text-gray-400 text-center">
+        <p>Made with 💖 by Tech Enthusiasts</p>
+        <p class="mt-2">Explore more at <a href="https://ollama.com/"
+                class="text-yellow-300 font-bold hover:underline">Ollama</a>.</p>
+    </footer>
+</body>
+
+</html>
