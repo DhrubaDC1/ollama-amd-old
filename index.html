@@ -59,6 +59,51 @@
         </div>
     </section>
 
+    <!-- GPU List Section -->
+    <section id="gpu-list" class="py-16 bg-gray-100 text-gray-900">
+        <div class="container mx-auto px-5">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 fade-in">
+                AMD GPUs and Their GFX Versions
+            </h2>
+            <p class="text-center mb-8">Here's a list of AMD GPUs with their GFX versions that are earlier than the AMD Radeon RX 6800 XT (based on the RDNA 2 architecture, GFX1030):</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Vega Series (Vega 10, Vega 20) - GFX900</h3>
+                    <p>Example: Radeon RX Vega 64, Vega 56</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Navi 10 (RDNA 1.0) - GFX1010</h3>
+                    <p>Example: Radeon RX 5700 XT, RX 5700, RX 5600 XT, RX 5500 XT</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Navi 12 (RDNA 1.0) - GFX1011</h3>
+                    <p>Example: Radeon RX 5300 XT</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Navi 14 (RDNA 1.0) - GFX1012</h3>
+                    <p>Example: Radeon RX 5500 XT (mobile)</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Renoir APU (Vega-based iGPU) - GFX902</h3>
+                    <p>Example: Ryzen 5 4500U (with Vega 6 integrated graphics)</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Polaris Series (GCN 4.0) - GFX803</h3>
+                    <p>Example: Radeon RX 480, RX 580, RX 570</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Fiji (GCN 3.0) - GFX804</h3>
+                    <p>Example: Radeon R9 Fury, Fury X</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Hawaii (GCN 2.0) - GFX803</h3>
+                    <p>Example: Radeon R9 290, 290X</p>
+                </div>
+            </div>
+            <p class="text-center mt-8">The RX 6800 XT (GFX1030) represents a significant shift to RDNA 2, so these earlier GPUs are from older architectures, starting from GCN (Graphics Core Next) to RDNA 1.0.</p>
+        </div>
+    </section>
+
     <!-- Steps Section -->
     <section id="steps" class="py-16 bg-white text-gray-900">
         <div class="container mx-auto px-5">
@@ -125,6 +170,7 @@ $Env:HSA_OVERRIDE_GFX_VERSION = "your_gfx_version"
             </div>
         </div>
     </section>
+    
 
     <!-- Footer -->
     <footer class="py-10 bg-gray-900 text-gray-400 text-center">
